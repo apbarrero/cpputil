@@ -5,8 +5,8 @@ C++ utilities
 
 ## Requirements ##
 
-[Sconstruct](http://www.scons.org/) for building.
-[Google Mock](https://code.google.com/p/googlemock/) and [Google Test](https://code.google.com/p/googletest/) for compiling and running tests.
+1. [Sconstruct](http://www.scons.org/) for building.
+2. [Google Mock](https://code.google.com/p/googlemock/) and [Google Test](https://code.google.com/p/googletest/) for compiling and running tests.
 
 ## Usage ##
 
