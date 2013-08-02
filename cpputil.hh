@@ -11,6 +11,15 @@ namespace cpputil
             delete t;
         }
     };
+
+    template<typename T>
+    struct DereferenceLess
+    {
+        bool operator()(T* rhs, T* lhs)
+        {
+            return *rhs < *lhs;
+        }
+    };
 }
 
 #endif
