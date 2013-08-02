@@ -4,7 +4,7 @@
 namespace cpputil
 {
     template<typename T>
-    struct DereferenceDelete
+    struct deletor
     {
         void operator()(T* t)
         {

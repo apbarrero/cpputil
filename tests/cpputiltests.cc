@@ -5,21 +5,21 @@
 
 using namespace cpputil;
 
-TEST(DereferenceDeleteTests, DeleteSinglePointer_Works)
+TEST(DeletorTests, DeleteSinglePointer_Works)
 {
     int *pointer = new int;
 
-    DereferenceDelete<int> deleter;
+    deletor<int> deleter;
     deleter(pointer);
     SUCCEED();
 }
 
-TEST(DereferenceDeleteTests, DeleteContainer_Works)
+TEST(DeletorTests, DeleteContainer_Works)
 {
     std::vector<int*> v;
     for (unsigned int i = 0; i < 10; ++i) v.push_back(new int);
 
-    std::for_each(v.begin(), v.end(), DereferenceDelete<int>());
+    std::for_each(v.begin(), v.end(), deletor<int>());
     SUCCEED();
 }
 
