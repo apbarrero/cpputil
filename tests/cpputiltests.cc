@@ -23,17 +23,17 @@ TEST(DeletorTests, DeleteContainer_Works)
     SUCCEED();
 }
 
-TEST(DereferenceLessTests, CompareTwoPointers_Works)
+TEST(StaredLessTests, CompareTwoPointers_Works)
 {
     int* a = new int(1);
     int* b = new int(2);
 
-    DereferenceLess<int> lessCompare;
+    stared_less<int> lessCompare;
     EXPECT_TRUE(lessCompare(a, b));
     EXPECT_FALSE(lessCompare(b, a));
 }
 
-TEST(DereferenceLessTests, SortVector_Works)
+TEST(StaredLessTests, SortVector_Works)
 {
     std::vector<int*> v;
     for (unsigned int i = 10; i > 0; --i)
@@ -41,15 +41,15 @@ TEST(DereferenceLessTests, SortVector_Works)
         v.push_back(new int(i));
     }
 
-    std::sort(v.begin(), v.end(), DereferenceLess<int>());
+    std::sort(v.begin(), v.end(), stared_less<int>());
 
     EXPECT_EQ(1, *v.front());
     EXPECT_EQ(10, *v.back());
 }
 
-TEST(DereferenceLessTests, KeepSetSorted_Works)
+TEST(StaredLessTests, KeepSetSorted_Works)
 {
-    std::set<int*, DereferenceLess<int> > v;
+    std::set<int*, stared_less<int> > v;
     for (unsigned int i = 10; i > 0; --i)
     {
         v.insert(new int(i));

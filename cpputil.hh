@@ -13,7 +13,7 @@ namespace cpputil
     };
 
     template<typename T>
-    struct DereferenceLess
+    struct stared_less
     {
         bool operator()(T* rhs, T* lhs)
         {
