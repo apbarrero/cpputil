@@ -4,13 +4,25 @@ import os
 env = DefaultEnvironment()
 env['LINK'] = 'g++'
 
+class cd:
+    """Context manager for changing the current working directory"""
+    def __init__(self, newPath):
+        self.newPath = newPath
+
+    def __enter__(self):
+        self.savedPath = os.getcwd()
+        os.chdir(self.newPath)
+
+    def __exit__(self, etype, value, traceback):
+        os.chdir(self.savedPath)
+
 def build_cmake(target, source, env):
     build_path=os.path.dirname(target[0].abspath)
     if not os.path.exists(target[0].abspath):
         if not os.path.exists(build_path):
             os.mkdir(build_path)
-        os.chdir(build_path)
-        return subprocess.call("cmake " + os.path.join(source[0].abspath, os.pardir) + " && make", shell=True)
+        with cd(build_path):
+            return subprocess.call("cmake " + os.path.join(source[0].abspath, os.pardir) + " && make", shell=True)
 
 cmk = Builder(action = build_cmake)
 env.Append(BUILDERS = {'cmake': cmk})
