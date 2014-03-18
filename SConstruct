@@ -32,7 +32,9 @@ def runUnitTest(target, source, env):
     if not subprocess.call(app):
         open(str(target[0]),'w').write("PASSED\n")
 
-env.cmake(os.path.join('gtest', 'build', 'libgtest.a'), os.path.join('gtest', 'tags', 'release-1.7.0', 'CMakeLists.txt'))
+gtest_src_dir = os.path.join('gtest', 'tags', 'release-1.7.0')
+env.cmake(os.path.join('gtest', 'build', 'libgtest.a'), os.path.join(gtest_src_dir, 'CMakeLists.txt'))
 test_sources = ['cpputiltests.cc']
-program = env.Program('test', test_sources, srcdir='tests', parse_flags='-I.', LIBS=['gtest_main', 'gtest', 'pthread'], LIBPATH=[os.path.join('gtest', 'build')])
+env.Append(CPPPATH = [os.path.join(gtest_src_dir, 'include'), '.'])
+program = env.Program('test', test_sources, srcdir='tests', LIBS=['gtest_main', 'gtest', 'pthread'], LIBPATH=[os.path.join('gtest', 'build')])
 Command('test.passed', 'test', runUnitTest)
