@@ -1,3 +1,5 @@
+[![Travis CI build](https://secure.travis-ci.org/apbarrero/cpputil.png?branch=master)](https://travis-ci.org/apbarrero/cpputil)
+
 cpputil
 =======
 
